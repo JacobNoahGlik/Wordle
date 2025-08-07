@@ -22,10 +22,12 @@ const usedLetters = ref({})
 // ✅ Shared key handler (used by both on-screen and physical keyboard)
 function handleKeyPress(key) {
   if (key === 'Enter') {
-    if (currentGuess.value.length !== 5 || !validWords.has(currentGuess.value.toLowerCase())) return
-    guesses.value.push(currentGuess.value.toLowerCase())
-    currentGuess.value = ''
-  } else if (key === 'Backspace') {
+  if (currentGuess.value.length !== 5 || !validWords.has(currentGuess.value.toLowerCase())) return
+  const guess = currentGuess.value.toLowerCase()
+  guesses.value.push(guess)
+  updateUsedLetters(guess) // ✅ This was missing!
+  currentGuess.value = ''
+} else if (key === 'Backspace') {
     currentGuess.value = currentGuess.value.slice(0, -1)
   } else if (currentGuess.value.length < 5 && /^[a-zA-Z]$/.test(key)) {
     currentGuess.value += key.toLowerCase()

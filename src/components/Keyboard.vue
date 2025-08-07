@@ -1,3 +1,4 @@
+<!-- components/Keyboard.vue -->
 <template>
   <div class="keyboard">
     <div v-for="row in rows" :key="row" class="key-row">
@@ -31,14 +32,11 @@ const rows = [
 
 function handleKeyPress(key) {
   emit('keyPress', key)
-  guesses.value.push(currentGuess.value.toLowerCase())
-  updateUsedLetters(currentGuess.value.toLowerCase())
-  console.log('Keyboard received:', props.usedLetters)
 }
 
 function keyColorClass(key) {
-  const status = props.usedLetters[key.toLowerCase()]
-  return status || ''
+  const color = props.usedLetters[key.toLowerCase()]
+  return color || ''
 }
 </script>
 
@@ -54,17 +52,14 @@ function keyColorClass(key) {
   background-color: #d3d6da;
   cursor: pointer;
 }
-
 .green {
   background-color: #6aaa64 !important;
   color: white;
 }
-
 .yellow {
   background-color: #c9b458 !important;
   color: white;
 }
-
 .gray {
   background-color: #787c7e !important;
   color: white;
