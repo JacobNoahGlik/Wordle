@@ -12,6 +12,11 @@ A Wordle-like game built with **Vue 3 + Vite**.
 
 ---
 
+## Sample:
+<img width="504" height="630" alt="image" src="https://github.com/user-attachments/assets/a552bb7e-042b-46e7-85b5-0a2bed81726f" />
+
+<br>
+
 ## Quick Start
 
 **Requirements**
