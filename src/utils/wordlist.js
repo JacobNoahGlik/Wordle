@@ -1,6 +1,10 @@
-// utils/wordlist.js
-import rawWordList from './wordlist.txt?raw';
+// src/utils/wordlist.js
+import rawWordList from './wordlist.txt?raw'
 
-const wordArray = rawWordList.trim().split('\n').map(word => word.toLowerCase());
-export const validWords = new Set(wordArray);
-export const wordList = wordArray; // For indexed access
+// Handle LF/CRLF and lowercase everything
+export const wordList = rawWordList
+  .trim()
+  .split(/\r?\n/)
+  .map(w => w.toLowerCase())
+
+export const validWords = new Set(wordList)
