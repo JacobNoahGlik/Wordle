@@ -4,8 +4,7 @@ Guess the word game using `js`
 ## Project Structure
 ```
 /wordle-clone/
-├── public/
-│   └── index.html
+├── index.html
 ├── src/
 │   ├── App.vue
 │   ├── main.js
