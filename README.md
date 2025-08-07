@@ -25,7 +25,7 @@ A Wordle-like game built with **Vue 3 + Vite**.
 
 # 1) Clone
 ```bash
-git clone https://github.com/JacobNoahGlik/Wrodle.git
+git clone https://github.com/JacobNoahGlik/Wordle.git
 cd Wordle
 ```
 # 2) Install deps
