@@ -57,11 +57,37 @@ const remainingRows = computed(() => 6 - guesses.value.length - (currentGuess.va
 const showCurrentRow = computed(() => currentGuess.value.length > 0)
 
 function getColorClass(letter, index, guess) {
+  return getColorMap(guess)[index]
+}
+
+function getColorMap(guess) {
   const target = targetWord.value
-  if (!target) return ''
-  if (target[index] === letter) return 'green'
-  else if (target.includes(letter)) return 'yellow'
-  else return 'gray'
+  const result = Array(5).fill('gray')
+  const targetLetterCounts = {}
+
+  // Count letter frequencies in target word
+  for (let i = 0; i < 5; i++) {
+    const char = target[i]
+    targetLetterCounts[char] = (targetLetterCounts[char] || 0) + 1
+  }
+
+  // First pass: mark greens
+  for (let i = 0; i < 5; i++) {
+    if (guess[i] === target[i]) {
+      result[i] = 'green'
+      targetLetterCounts[guess[i]]--
+    }
+  }
+
+  // Second pass: mark yellows (only if not green and target still has the letter)
+  for (let i = 0; i < 5; i++) {
+    if (result[i] !== 'green' && target.includes(guess[i]) && targetLetterCounts[guess[i]] > 0) {
+      result[i] = 'yellow'
+      targetLetterCounts[guess[i]]--
+    }
+  }
+
+  return result
 }
 </script>
 
